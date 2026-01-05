@@ -1,0 +1,52 @@
+[
+  {
+    "id": "#TXN-1001",
+    "date": "2025-11-01",
+    "description": "Website Design Service",
+    "category": "Services",
+    "type": "Revenue",
+    "amountNumber": 4200,
+    "amount": "+$4200",
+    "status": "Completed"
+  },
+  {
+    "id": "#TXN-1002",
+    "date": "2025-11-03",
+    "description": "Office Supplies Order",
+    "category": "Office Supplies",
+    "type": "Expense",
+    "amountNumber": 760,
+    "amount": "-$760",
+    "status": "Completed"
+  },
+  {
+    "id": "#TXN-1003",
+    "date": "2025-11-07",
+    "description": "Consulting Retainer",
+    "category": "Services",
+    "type": "Revenue",
+    "amountNumber": 6000,
+    "amount": "+$6000",
+    "status": "Completed"
+  },
+  {
+    "id": "#TXN-1004",
+    "date": "2025-11-12",
+    "description": "Marketing Campaign",
+    "category": "Marketing",
+    "type": "Expense",
+    "amountNumber": 2100,
+    "amount": "-$2100",
+    "status": "Pending"
+  },
+  {
+    "id": "#TXN-1005",
+    "date": "2025-11-20",
+    "description": "Subscription Revenue",
+    "category": "Subscriptions",
+    "type": "Revenue",
+    "amountNumber": 1250,
+    "amount": "+$1250",
+    "status": "Completed"
+  }
+]

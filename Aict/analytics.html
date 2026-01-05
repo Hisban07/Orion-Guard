@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Local Business Profit Leakage Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <i class="fas fa-chart-line"></i>
+            <h2> Business Profit Leakage Detection</h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="home.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="transactions.html" class="nav-link">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="analytics.html" class="nav-link active">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="reports.html" class="nav-link">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="alerts.html" class="nav-link">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="settings.html" class="nav-link">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <p>&copy; 2025 UET Lahore</p>
+            <p class="small-text">Hisban Ahmad & Azlan Khurshid</p>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                <h1 id="pageTitle">Advanced Analytics</h1>
+                <p class="breadcrumb">Home / <span id="breadcrumbCurrent">Analytics</span></p>
+            </div>
+            <div class="header-actions">
+                <div class="date-display">
+                    <i class="fas fa-calendar"></i>
+                    <span id="currentDate"></span>
+                </div>
+                <button class="btn-export" onclick="exportReport()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <div class="user-profile">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234A90E2'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3EBA%3C/text%3E%3C/svg%3E" alt="User">
+                    <span>Business Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="content-section active">
+            <h2>Advanced Analytics</h2>
+            
+            <div class="analytics-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3>Monthly Performance Overview</h3>
+                        <select class="chart-filter">
+                            <option>2024</option>
+                            <option>2023</option>
+                        </select>
+                    </div>
+                    <canvas id="monthlyPerformanceChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Expense Breakdown by Category</h3>
+                    </div>
+                    <canvas id="expenseCategoryChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Leakage Sources</h3>
+                    </div>
+                    <canvas id="leakageSourcesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3><i class="fas fa-lightbulb"></i> Key Insights</h3>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        <h4>Revenue Growth</h4>
+                        <p>Your revenue has increased by 12.5% compared to last month. Strong performance in sales category.</p>
+                    </div>
+                    <div class="insight-card warning">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        <h4>High Expense Alert</h4>
+                        <p>Office supplies expenses are 35% higher than average. Consider reviewing supplier contracts.</p>
+                    </div>
+                    <div class="insight-card">
+                        <i class="fas fa-chart-pie"></i>
+                        <h4>Profit Margin</h4>
+                        <p>Current profit margin is 37.1%, slightly above industry average of 35%.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
+    <script src="charts.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html>

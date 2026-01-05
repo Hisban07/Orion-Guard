@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Business Profit Leakage Detection Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <i class="fas fa-chart-line"></i>
+            <h2>Business Profit Leakage Detection</h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="home.html" class="nav-link active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="transactions.html" class="nav-link">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="analytics.html" class="nav-link">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="reports.html" class="nav-link">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="alerts.html" class="nav-link">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="settings.html" class="nav-link">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <p>&copy; 2025 UET Lahore</p>
+            <p class="small-text">Hisban Ahmad & Azlan Khurshid</p>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                <h1 id="pageTitle">Dashboard Overview</h1>
+                <p class="breadcrumb">Home / <span id="breadcrumbCurrent">Dashboard</span></p>
+            </div>
+            <div class="header-actions">
+                <div class="date-display">
+                    <i class="fas fa-calendar"></i>
+                    <span id="currentDate"></span>
+                </div>
+                <button class="btn-export" onclick="exportReport()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <div class="user-profile">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234A90E2'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3EBA%3C/text%3E%3C/svg%3E"
+                        alt="User">
+                    <span>Business Admin</span>
+                    <button class="btn-secondary" onclick="logout()"
+                        style="margin-left: 12px; padding: 6px 12px; font-size: 13px;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <!-- KPI Cards -->
+            <div class="kpi-container">
+                <div class="kpi-card revenue">
+                    <div class="kpi-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Total Revenue</h3>
+                        <p class="kpi-value">$125,430</p>
+                        <span class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i> 12.5%
+                        </span>
+                    </div>
+                </div>
+
+                <div class="kpi-card expenses">
+                    <div class="kpi-icon">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Total Expenses</h3>
+                        <p class="kpi-value">$78,920</p>
+                        <span class="kpi-change negative">
+                            <i class="fas fa-arrow-up"></i> 8.3%
+                        </span>
+                    </div>
+                </div>
+
+                <div class="kpi-card profit">
+                    <div class="kpi-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Net Profit</h3>
+                        <p class="kpi-value">$46,510</p>
+                        <span class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i> 15.2%
+                        </span>
+                    </div>
+                </div>
+
+                <div class="kpi-card leakage">
+                    <div class="kpi-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Profit Leakage</h3>
+                        <p class="kpi-value">$3,240</p>
+                        <span class="kpi-change warning">
+                            <i class="fas fa-exclamation-circle"></i> Action Required
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Revenue vs Expenses Trend</h3>
+                        <select class="chart-filter" id="trendFilter">
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>Last 3 Months</option>
+                            <option>Last Year</option>
+                        </select>
+                    </div>
+                    <canvas id="revenueExpensesChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Profit Distribution</h3>
+                        <select class="chart-filter" id="profitFilter">
+                            <option>This Month</option>
+                            <option>Last Month</option>
+                            <option>This Quarter</option>
+                        </select>
+                    </div>
+                    <canvas id="profitDistributionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-section">
+                <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p class="activity-title">Payment Received</p>
+                            <p class="activity-desc">Invoice #INV-2024-0156 paid - $4,250</p>
+                        </div>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon warning">
+                            <i class="fas fa-exclamation"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p class="activity-title">Leakage Detected</p>
+                            <p class="activity-desc">Unusual expense pattern in category: Office Supplies</p>
+                        </div>
+                        <span class="activity-time">5 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon info">
+                            <i class="fas fa-info"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p class="activity-title">New Transaction</p>
+                            <p class="activity-desc">Expense added: Equipment Maintenance - $1,850</p>
+                        </div>
+                        <span class="activity-time">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transactions Section -->
+        <section id="transactions" class="content-section">
+            <div class="section-header">
+                <h2>Transaction History</h2>
+                <div class="section-actions">
+                    <input type="text" class="search-box" placeholder="Search transactions..." id="searchTransactions">
+                    <button class="btn-primary" id="addTransactionBtn">
+                        <i class="fas fa-plus"></i> Add Transaction
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <select class="filter-select">
+                    <option>All Types</option>
+                    <option>Revenue</option>
+                    <option>Expense</option>
+                </select>
+                <select class="filter-select">
+                    <option>All Categories</option>
+                    <option>Sales</option>
+                    <option>Marketing</option>
+                    <option>Operations</option>
+                    <option>Office Supplies</option>
+                </select>
+                <input type="date" class="filter-date">
+                <button class="btn-filter"><i class="fas fa-filter"></i> Apply Filters</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTableBody">
+                        <tr>
+                            <td>#TXN-2024-0234</td>
+                            <td>Dec 07, 2024</td>
+                            <td>Product Sale - Premium Package</td>
+                            <td>Sales</td>
+                            <td><span class="badge badge-success">Revenue</span></td>
+                            <td class="amount-positive">+$4,250</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-2024-0233</td>
+                            <td>Dec 06, 2024</td>
+                            <td>Office Supplies Purchase</td>
+                            <td>Office Supplies</td>
+                            <td><span class="badge badge-danger">Expense</span></td>
+                            <td class="amount-negative">-$850</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-2024-0232</td>
+                            <td>Dec 05, 2024</td>
+                            <td>Marketing Campaign - Social Media</td>
+                            <td>Marketing</td>
+                            <td><span class="badge badge-danger">Expense</span></td>
+                            <td class="amount-negative">-$2,100</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-2024-0231</td>
+                            <td>Dec 04, 2024</td>
+                            <td>Service Revenue - Consulting</td>
+                            <td>Services</td>
+                            <td><span class="badge badge-success">Revenue</span></td>
+                            <td class="amount-positive">+$6,500</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-2024-0230</td>
+                            <td>Dec 03, 2024</td>
+                            <td>Equipment Maintenance</td>
+                            <td>Operations</td>
+                            <td><span class="badge badge-danger">Expense</span></td>
+                            <td class="amount-negative">-$1,850</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <button class="btn-page">4</button>
+                <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="content-section">
+            <h2>Advanced Analytics</h2>
+
+            <div class="analytics-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3>Monthly Performance Overview</h3>
+                        <select class="chart-filter">
+                            <option>2024</option>
+                            <option>2023</option>
+                        </select>
+                    </div>
+                    <canvas id="monthlyPerformanceChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Expense Breakdown by Category</h3>
+                    </div>
+                    <canvas id="expenseCategoryChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Leakage Sources</h3>
+                    </div>
+                    <canvas id="leakageSourcesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3><i class="fas fa-lightbulb"></i> Key Insights</h3>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        <h4>Revenue Growth</h4>
+                        <p>Your revenue has increased by 12.5% compared to last month. Strong performance in sales
+                            category.</p>
+                    </div>
+                    <div class="insight-card warning">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        <h4>High Expense Alert</h4>
+                        <p>Office supplies expenses are 35% higher than average. Consider reviewing supplier contracts.
+                        </p>
+                    </div>
+                    <div class="insight-card">
+                        <i class="fas fa-chart-pie"></i>
+                        <h4>Profit Margin</h4>
+                        <p>Current profit margin is 37.1%, slightly above industry average of 35%.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="content-section">
+            <h2>Financial Reports</h2>
+
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Profit & Loss Statement</h3>
+                    <p>Comprehensive P&L report for the selected period</p>
+                    <button class="btn-primary" onclick="generateReport('pl')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Revenue Analysis</h3>
+                    <p>Detailed breakdown of revenue streams and trends</p>
+                    <button class="btn-primary" onclick="generateReport('revenue')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-money-bill-trend-up"></i>
+                    </div>
+                    <h3>Expense Report</h3>
+                    <p>Complete expense analysis with category breakdowns</p>
+                    <button class="btn-primary" onclick="generateReport('expense')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-leak"></i>
+                    </div>
+                    <h3>Leakage Detection Report</h3>
+                    <p>Identified profit leakages with recommendations</p>
+                    <button class="btn-primary" onclick="generateReport('leakage')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="report-history">
+                <h3>Recent Reports</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Report Name</th>
+                            <th>Type</th>
+                            <th>Generated On</th>
+                            <th>Period</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly P&L - November 2024</td>
+                            <td><span class="badge badge-primary">P&L</span></td>
+                            <td>Dec 01, 2024</td>
+                            <td>Nov 2024</td>
+                            <td>
+                                <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Q4 Expense Analysis</td>
+                            <td><span class="badge badge-danger">Expense</span></td>
+                            <td>Nov 28, 2024</td>
+                            <td>Q4 2024</td>
+                            <td>
+                                <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="content-section">
+            <h2>Alerts & Notifications</h2>
+
+            <div class="alerts-container">
+                <div class="alert-item critical">
+                    <div class="alert-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>Critical Profit Leakage Detected</h4>
+                        <p>Unusual expense pattern detected in Office Supplies category. Amount exceeds budget by 45%.
+                        </p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                    </div>
+                    <button class="btn-alert">Investigate</button>
+                </div>
+
+                <div class="alert-item warning">
+                    <div class="alert-icon">
+                        <i class="fas fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>High Expense Alert</h4>
+                        <p>Marketing expenses for this month are 30% higher than the previous month average.</p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 5 hours ago</span>
+                    </div>
+                    <button class="btn-alert">Review</button>
+                </div>
+
+                <div class="alert-item info">
+                    <div class="alert-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>Revenue Milestone Achieved</h4>
+                        <p>Congratulations! You've reached $125,000 in revenue for this quarter.</p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 1 day ago</span>
+                    </div>
+                    <button class="btn-alert">View Details</button>
+                </div>
+
+                <div class="alert-item success">
+                    <div class="alert-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>Payment Received</h4>
+                        <p>Invoice #INV-2024-0156 has been paid. Amount: $4,250.</p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 2 days ago</span>
+                    </div>
+                    <button class="btn-alert">Acknowledge</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="content-section">
+            <h2>Settings</h2>
+
+            <div class="settings-container">
+                <div class="settings-card">
+                    <h3><i class="fas fa-user-cog"></i> Profile Settings</h3>
+                    <div class="form-group">
+                        <label>Business Name</label>
+                        <input type="text" class="form-input" value="Local Business LLC"
+                            placeholder="Enter business name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-input" value="admin@business.com" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select class="form-input">
+                            <option>USD ($)</option>
+                            <option>EUR (€)</option>
+                            <option>GBP (£)</option>
+                            <option>PKR (₨)</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary">Save Changes</button>
+                </div>
+
+                <div class="settings-card">
+                    <h3><i class="fas fa-bell"></i> Notification Preferences</h3>
+                    <div class="toggle-group">
+                        <div class="toggle-item">
+                            <span>Email Notifications</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span>Leakage Alerts</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span>Weekly Reports</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                    <button class="btn-secondary">Change Password</button>
+                    <button class="btn-secondary">Enable Two-Factor Authentication</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div class="modal-overlay" id="transactionModal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-labelledby="modalTitle">
+            <h3 id="modalTitle">Add Transaction</h3>
+            <form id="transactionForm">
+                <div class="modal-grid">
+                    <div>
+                        <label>Transaction ID</label>
+                        <input type="text" id="txnId" class="input-sm" placeholder="#TXN-0000">
+                    </div>
+                    <div>
+                        <label>Date</label>
+                        <input type="date" id="txnDate" class="input-sm">
+                    </div>
+                    <div style="grid-column:1 / -1;">
+                        <label>Description</label>
+                        <input type="text" id="txnDesc" class="input-sm" placeholder="Description">
+                    </div>
+                    <div>
+                        <label>Category</label>
+                        <input type="text" id="txnCategory" class="input-sm" placeholder="Category">
+                    </div>
+                    <div>
+                        <label>Type</label>
+                        <select id="txnType" class="input-sm">
+                            <option>Revenue</option>
+                            <option>Expense</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Amount (number)</label>
+                        <input type="number" id="txnAmount" class="input-sm" placeholder="0">
+                    </div>
+                    <div>
+                        <label>Status</label>
+                        <select id="txnStatus" class="input-sm">
+                            <option>Completed</option>
+                            <option>Pending</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="txnCancel" class="btn-secondary">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Transaction</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
+    <script src="charts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Local Business Profit Leakage Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="page-fade-in">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <i class="fas fa-chart-line"></i>
+            <h2> Business Profit Leakage Detection</h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="home.html" class="nav-link active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="transactions.html" class="nav-link">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="analytics.html" class="nav-link">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="reports.html" class="nav-link">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="alerts.html" class="nav-link">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="settings.html" class="nav-link">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <p>&copy; 2025 UET Lahore</p>
+            <p class="small-text">Hisban Ahmad & Azlan Khurshid</p>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                <h1 id="pageTitle">Welcome to Your Business Dashboard</h1>
+                <p class="breadcrumb">Home</p>
+            </div>
+            <div class="header-actions">
+                <div class="date-display">
+                    <i class="fas fa-calendar"></i>
+                    <span id="currentDate"></span>
+                </div>
+                <div class="user-profile">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234A90E2'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3EBA%3C/text%3E%3C/svg%3E" alt="User">
+                    <span>Business Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
+            <!-- Welcome Message -->
+            <div class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h2>Welcome back, Business Admin!</h2>
+                    <p>Manage your business finances efficiently with our comprehensive Profit Leakage Detection system. Monitor revenue, track expenses, analyze trends, and stay ahead of potential issues.</p>
+                    <div class="welcome-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">$125,430</span>
+                            <span class="stat-label">Total Revenue</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$46,510</span>
+                            <span class="stat-label">Net Profit</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$3,240</span>
+                            <span class="stat-label">Leakage Detected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module Menu -->
+            <div class="module-menu">
+                <h3><i class="fas fa-th-large"></i> Quick Access Modules</h3>
+                <div class="module-grid">
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4>Dashboard</h4>
+                        <p>Overview of your business metrics, KPIs, and recent activity</p>
+                        <a href="dashboard.html" class="module-link">
+                            <i class="fas fa-arrow-right"></i> Access Dashboard
+                        </a>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h4>Transactions</h4>
+                        <p>Manage and monitor all financial transactions and records</p>
+                        <a href="transactions.html" class="module-link">
+                            <i class="fas fa-arrow-right"></i> View Transactions
+                        </a>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Analytics</h4>
+                        <p>Deep dive into your financial data with advanced analytics</p>
+                        <a href="analytics.html" class="module-link">
+                            <i class="fas fa-arrow-right"></i> Explore Analytics
+                        </a>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4>Reports</h4>
+                        <p>Generate comprehensive financial reports and statements</p>
+                        <a href="reports.html" class="module-link">
+                            <i class="fas fa-arrow-right"></i> Generate Reports
+                        </a>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h4>Alerts</h4>
+                        <p>Stay informed with important notifications and alerts</p>
+                        <a href="alerts.html" class="module-link">
+                            <i class="fas fa-arrow-right"></i> Check Alerts
+                        </a>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h4>Settings</h4>
+                        <p>Customize your preferences and system configurations</p>
+                        <a href="settings.html" class="module-link">
+                            <i class="fas fa-arrow-right"></i> Open Settings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="window.location.href='transactions.html'">
+                        <i class="fas fa-plus"></i> Add Transaction
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='reports.html'">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='alerts.html'">
+                        <i class="fas fa-bell"></i> View Alerts
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html>

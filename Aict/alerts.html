@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - Local Business Profit Leakage Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <i class="fas fa-chart-line"></i>
+            <h2> Business Profit Leakage Detection</h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="home.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="transactions.html" class="nav-link">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="analytics.html" class="nav-link">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="reports.html" class="nav-link">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="alerts.html" class="nav-link active">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="settings.html" class="nav-link">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <p>&copy; 2025 UET Lahore</p>
+            <p class="small-text">Hisban Ahmad & Azlan Khurshid</p>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                <h1 id="pageTitle">Alerts & Notifications</h1>
+                <p class="breadcrumb">Home / <span id="breadcrumbCurrent">Alerts</span></p>
+            </div>
+            <div class="header-actions">
+                <div class="date-display">
+                    <i class="fas fa-calendar"></i>
+                    <span id="currentDate"></span>
+                </div>
+                <button class="btn-export" onclick="exportReport()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <div class="user-profile">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234A90E2'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3EBA%3C/text%3E%3C/svg%3E" alt="User">
+                    <span>Business Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="content-section active">
+            <h2>Alerts & Notifications</h2>
+            
+            <div class="alerts-container">
+                <div class="alert-item critical">
+                    <div class="alert-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>Critical Profit Leakage Detected</h4>
+                        <p>Unusual expense pattern detected in Office Supplies category. Amount exceeds budget by 45%.</p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                    </div>
+                    <button class="btn-alert">Investigate</button>
+                </div>
+
+                <div class="alert-item warning">
+                    <div class="alert-icon">
+                        <i class="fas fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>High Expense Alert</h4>
+                        <p>Marketing expenses for this month are 30% higher than the previous month average.</p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 5 hours ago</span>
+                    </div>
+                    <button class="btn-alert">Review</button>
+                </div>
+
+                <div class="alert-item info">
+                    <div class="alert-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>Revenue Milestone Achieved</h4>
+                        <p>Congratulations! You've reached $125,000 in revenue for this quarter.</p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 1 day ago</span>
+                    </div>
+                    <button class="btn-alert">View Details</button>
+                </div>
+
+                <div class="alert-item success">
+                    <div class="alert-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="alert-content">
+                        <h4>Payment Received</h4>
+                        <p>Invoice #INV-2024-0156 has been paid. Amount: $4,250.</p>
+                        <span class="alert-time"><i class="fas fa-clock"></i> 2 days ago</span>
+                    </div>
+                    <button class="btn-alert">Acknowledge</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html>

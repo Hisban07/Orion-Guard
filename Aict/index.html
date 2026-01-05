@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Business Profit Leakage Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body class="login-body">
+
+    <div class="window-container">
+        <!-- Window Header -->
+        <div class="window-header">
+            <div class="window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+            </div>
+            <div class="window-title">Login.exe</div>
+        </div>
+
+        <!-- Window Content -->
+        <div class="window-content">
+            <div class="login-split-container">
+
+                <!-- Left Side: Logo -->
+                <div class="login-brand-side">
+                    <img src="i.jpeg" alt="Business Profit Leakage Detection System" class="login-logo-img">
+                </div>
+
+                <!-- Divider -->
+                <div class="login-divider"></div>
+
+                <!-- Right Side: Form -->
+                <div class="login-form-side">
+                    <h2 class="welcome-heading">Welcome Back</h2>
+                    <p class="subtitle">Sign in to your account</p>
+
+                    <form id="loginForm" class="login-form" autocomplete="off">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input id="email" name="email" class="form-input" type="email"
+                                placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" name="password" class="form-input" type="password"
+                                placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="forgot">
+                            <a href="#">Forgot Password?</a>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn">Login</button>
+                            <button type="button" id="demoBtn" class="btn-secondary">Demo</button>
+                        </div>
+
+                        <p class="login-feedback" id="loginFeedback" aria-live="polite"></p>
+                    </form>
+
+                    <div class="links muted">
+                        Don't have an account? <a href="#">Sign Up</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Visual interference elements -->
+            <div class="interference">
+                <div class="noise"></div>
+                <div class="scanlines" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Local Business Profit Leakage Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <i class="fas fa-chart-line"></i>
+            <h2> Business Profit Leakage Detection</h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="home.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="transactions.html" class="nav-link">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="analytics.html" class="nav-link">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="reports.html" class="nav-link active">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="alerts.html" class="nav-link">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="settings.html" class="nav-link">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <p>&copy; 2025 UET Lahore</p>
+            <p class="small-text">Hisban Ahmad & Azlan Khurshid</p>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                <h1 id="pageTitle">Financial Reports</h1>
+                <p class="breadcrumb">Home / <span id="breadcrumbCurrent">Reports</span></p>
+            </div>
+            <div class="header-actions">
+                <div class="date-display">
+                    <i class="fas fa-calendar"></i>
+                    <span id="currentDate"></span>
+                </div>
+                <button class="btn-export" onclick="exportReport()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <div class="user-profile">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234A90E2'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial'%3EBA%3C/text%3E%3C/svg%3E" alt="User">
+                    <span>Business Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Reports Section -->
+        <section id="reports" class="content-section active">
+            <h2>Financial Reports</h2>
+            
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Profit & Loss Statement</h3>
+                    <p>Comprehensive P&L report for the selected period</p>
+                    <button class="btn-primary" onclick="generateReport('pl')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Revenue Analysis</h3>
+                    <p>Detailed breakdown of revenue streams and trends</p>
+                    <button class="btn-primary" onclick="generateReport('revenue')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-money-bill-trend-up"></i>
+                    </div>
+                    <h3>Expense Report</h3>
+                    <p>Complete expense analysis with category breakdowns</p>
+                    <button class="btn-primary" onclick="generateReport('expense')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-leak"></i>
+                    </div>
+                    <h3>Leakage Detection Report</h3>
+                    <p>Identified profit leakages with recommendations</p>
+                    <button class="btn-primary" onclick="generateReport('leakage')">
+                        <i class="fas fa-file-pdf"></i> Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="report-history">
+                <h3>Recent Reports</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Report Name</th>
+                            <th>Type</th>
+                            <th>Generated On</th>
+                            <th>Period</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly P&L - November 2024</td>
+                            <td><span class="badge badge-primary">P&L</span></td>
+                            <td>Dec 01, 2024</td>
+                            <td>Nov 2024</td>
+                            <td>
+                                <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Q4 Expense Analysis</td>
+                            <td><span class="badge badge-danger">Expense</span></td>
+                            <td>Nov 28, 2024</td>
+                            <td>Q4 2024</td>
+                            <td>
+                                <button class="btn-icon" title="Download"><i class="fas fa-download"></i></button>
+                                <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html>
